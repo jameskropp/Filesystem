@@ -18,6 +18,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+p {
+  word-wrap: break-word;
+}
+
 .row {
   margin: auto;
   margin-top: 50px;
@@ -54,6 +58,12 @@ body {
 
 .glyphicon-download {
   font-size: 4em;
+  color: #E63946;
+}
+
+.glyphicon-remove {
+  margin-top: 20px;
+  font-size: 3em;
   color: #E63946;
 }
 

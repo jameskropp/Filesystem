@@ -12,11 +12,12 @@ app.use("/scripts", express.static('build'));
 app.use("/css", express.static(pF+'/css'));
 app.use("/uploads", express.static(pF+'/uploads'));
 
-app.get('/', (req, resp)=>{
-  resp.sendFile(pF+'/index.html');
+app.get('/', (req, res)=>{
+  res.sendFile(pF+'/index.html');
 });
 
-app.post('/upload', function(req, resp){
+// Upload file system using Formidable to upload all files to the uploads folder
+app.post('/upload', function(req, res){
   var form = new formidable.IncomingForm();
   form.multiples = true;
   form.uploadDir = path.join(__dirname, "/public/uploads")
@@ -28,24 +29,26 @@ app.post('/upload', function(req, resp){
     console.log("Error: " + err);
   })
   form.on('end', function() {
-   resp.end('success');
+   res.end('success');
  });
  form.parse(req);
 })
 
-app.post('/viewfiles', function(req, resp){
+// Lists out all the files in the uploads folder and than sends the list to the frontend
+app.post('/viewfiles', function(req, res){
   var filesfound = [];
   fs.readdir(pF+"/uploads/", (err, files) => {
     if(err){
-      return resp.end();
+      return res.end();
     }
     files.forEach(file => {
       filesfound.push(file);
     });
-    resp.send(filesfound);
+    res.send(filesfound);
   })
 })
 
+// Grabs the file name from the frontend and if it exists it will download.
 app.get('/download', function(req, res){
   var filename = req.query.filename;
   var file = __dirname +'/public/uploads/' + filename;
@@ -53,7 +56,17 @@ app.get('/download', function(req, res){
     if(err){
       console.log(err);
     }
-  });
+  })
+})
+
+app.get('/delete', function(req, res){
+  var filename = pF + "/uploads/" + req.query.filename;
+    fs.unlink(filename, function(err){
+      if (err){
+        return console.error(err);
+      }
+      res.end('success');
+    });
 })
 
 app.listen(port, function(err){

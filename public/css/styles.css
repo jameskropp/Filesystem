@@ -1,0 +1,99 @@
+.btn:focus, .upload-btn:focus{
+  outline: 0 !important;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #457B9D;
+}
+
+.col-center {
+  display:inline-block;
+  float:none;
+}
+
+body {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.row {
+  margin: auto;
+  margin-top: 50px;
+}
+
+.uploads {
+  width: 450px;
+}
+
+.upload-btn, .download-btn {
+  color: #ffffff;
+  background-color: #E63946;
+  border: none;
+}
+
+.upload-btn:hover, .download-btn:hover,
+.upload-btn:focus, .download-btn:focus,
+.upload-btn:active, .download-btn:active,
+.upload-btn.active, .download-btn.active {
+  color: #ffffff;
+  background-color: #f64451;
+  border: none;
+}
+
+.uploads h4 {
+  padding-bottom: 30px;
+  color: #B8BDC1;
+}
+
+.glyphicon {
+  font-size: 6em;
+  color: #E63946;
+}
+
+.glyphicon-download {
+  font-size: 4em;
+  color: #E63946;
+}
+
+h2 {
+  margin-top: 15px;
+  color: #68757E;
+}
+
+.panel {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#upload-input {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .uploads {
+    width: 100%;
+  }
+  .glyphicon-download {
+    font-size: 3em;
+  }
+  .col-xs-3 h4 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    width: 100%;
+  }
+  .uploads {
+    width: 450px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 80%;
+  }
+}
